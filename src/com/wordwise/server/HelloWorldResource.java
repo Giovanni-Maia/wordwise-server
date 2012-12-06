@@ -12,6 +12,6 @@ public class HelloWorldResource extends ServerResource {
 	
 	@Get
 	public String represent() {
-		return "hello, Ugur!";
+		return "hello, World!";
 	}
 }

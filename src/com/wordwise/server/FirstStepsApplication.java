@@ -17,7 +17,7 @@ public class FirstStepsApplication extends Application {
         Router router = new Router(getContext());
   
         // Defines only one route  
-        router.attach("/ugur", HelloWorldResource.class);
+        router.attach("/hello", HelloWorldResource.class);
   
         return router;  
     }  
