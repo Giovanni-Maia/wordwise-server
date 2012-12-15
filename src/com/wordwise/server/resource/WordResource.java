@@ -1,4 +1,4 @@
-package com.wordwise.server.application;
+package com.wordwise.server.resource;
 
 import org.restlet.resource.Put;
 
