@@ -1,4 +1,4 @@
-package com.wordwise.model;
+package com.wordwise.server.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.wordwise.server.model.Word;
+
 @Entity
-@Table(name="QUALITY")
-public class Quality {
+@Table(name="DIFFICULTY")
+public class Difficulty {
 	
 	@Id
 	@GeneratedValue
@@ -21,8 +23,8 @@ public class Quality {
 	@JoinColumn(name="WORD_ID")
 	private Word word;
 	
-	@Column(name="QUALITY")
-	private Integer quality;
+	@Column(name="DIFFICULTY")
+	private Integer difficulty;
 
 	public Integer getId() {
 		return id;
@@ -40,11 +42,11 @@ public class Quality {
 		this.word = word;
 	}
 
-	public Integer getQuality() {
-		return quality;
+	public Integer getDifficulty() {
+		return difficulty;
 	}
 
-	public void setQuality(Integer quality) {
-		this.quality = quality;
+	public void setDifficulty(Integer difficulty) {
+		this.difficulty = difficulty;
 	}
 }

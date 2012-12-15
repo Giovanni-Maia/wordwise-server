@@ -1,4 +1,4 @@
-package com.wordwise.model;
+package com.wordwise.server.model;
 
 import java.util.Set;
 
@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.wordwise.server.model.Word;
+
 
 @Entity
 @Table(name="TRANSLATION")
@@ -20,6 +22,9 @@ public class Translation {
 	@GeneratedValue
 	@Column(name="ID")
 	private Integer id;
+	
+	@Column(name="TRANSLATION")
+	private String translation;
 	
 	@ManyToOne(targetEntity=Word.class)
 	@JoinColumn(name="WORD_ID")
@@ -38,6 +43,14 @@ public class Translation {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getTranslation() {
+		return translation;
+	}
+
+	public void setTranslation(String translation) {
+		this.translation = translation;
 	}
 
 	public Word getWord() {

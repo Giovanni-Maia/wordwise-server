@@ -1,4 +1,4 @@
-package com.wordwise.model;
+package com.wordwise.server.model;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

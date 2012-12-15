@@ -1,4 +1,4 @@
-package com.wordwise.model;
+package com.wordwise.server.model;
 
 import java.util.Set;
 
@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.wordwise.model.Difficulty;
+import com.wordwise.model.Quality;
 
 @Entity
 @Table(name="WORD")
