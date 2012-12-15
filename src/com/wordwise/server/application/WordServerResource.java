@@ -9,6 +9,7 @@ import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
 import com.wordwise.server.model.Word;
+import com.wordwise.server.resource.WordResource;
 
 public class WordServerResource extends ServerResource implements WordResource
 {

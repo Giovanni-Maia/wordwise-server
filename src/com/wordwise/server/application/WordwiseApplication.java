@@ -12,7 +12,7 @@ public class WordwiseApplication  extends Application
 	{  
         Router router = new Router(getContext());
         
-        router.attach("/words", WordResource.class);
+        router.attach("/words", WordServerResource.class);
   
         return router;  
     }  
