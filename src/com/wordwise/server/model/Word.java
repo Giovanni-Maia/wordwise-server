@@ -9,9 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.wordwise.model.Difficulty;
-import com.wordwise.model.Quality;
-
 @Entity
 @Table(name="WORD")
 public class Word {
