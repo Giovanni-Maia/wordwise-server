@@ -13,15 +13,22 @@ import com.wordwise.server.resource.WordResource;
 
 public class WordServerResource extends ServerResource implements WordResource
 {
+	private SessionFactory sessionFactory;
+	
+	public WordServerResource()
+	{
+		super();
+		
+		Configuration configuration = new Configuration();
+		configuration.configure();
+		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry(); 
+		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	}
+	
 	@Override
 	@Put
 	public void addWord(Word word)
 	{
-		Configuration configuration = new Configuration();
-		configuration.configure();
-		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry(); 
-		SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-		
 		Session session = sessionFactory.openSession();
 		try {
 			session.beginTransaction();
