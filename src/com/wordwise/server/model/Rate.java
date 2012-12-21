@@ -10,8 +10,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="RATE")
-public class Rate {
-	
+public class Rate
+{	
 	@Id
 	@GeneratedValue
 	@Column(name="ID")

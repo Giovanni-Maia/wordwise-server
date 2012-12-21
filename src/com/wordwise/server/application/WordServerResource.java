@@ -1,36 +1,31 @@
 package com.wordwise.server.application;
 
+import java.util.List;
+
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
+import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
+import com.wordwise.server.model.Difficulty;
+import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Word;
 import com.wordwise.server.resource.WordResource;
 
 public class WordServerResource extends ServerResource implements WordResource
 {
-	private SessionFactory sessionFactory;
-	
 	public WordServerResource()
 	{
 		super();
-		
-		Configuration configuration = new Configuration();
-		configuration.configure();
-		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry(); 
-		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 	}
 	
 	@Override
 	@Put
-	public void addWord(Word word)
+	public void add(Word word)
 	{
-		Session session = sessionFactory.openSession();
-		try {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try
+		{
 			session.beginTransaction();
 			session.save(word);
 			session.getTransaction().commit();
@@ -39,5 +34,24 @@ public class WordServerResource extends ServerResource implements WordResource
 		{
 			session.close();
 		}	
+	}
+
+	@Override
+	@Get
+	public List<Word> list(Language language, Difficulty difficulty, int numberOfWords)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Word> result = null;
+		try
+		{
+			session.beginTransaction();
+			result = session.createQuery("from Word").list();
+			session.getTransaction().commit();
+		}
+		finally
+		{
+			session.close();
+		}
+        return result;
 	}
 }

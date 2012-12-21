@@ -12,7 +12,16 @@ import com.wordwise.server.model.Word;
 
 @Entity
 @Table(name="DIFFICULTY")
-public class Difficulty {
+public class Difficulty
+{
+	public static final Difficulty EASY = new Difficulty(1);
+	public static final Difficulty MEDIUM = new Difficulty(2);
+	public static final Difficulty HARD = new Difficulty(3);
+	
+	private Difficulty (int difficulty)
+	{
+		this.difficulty = difficulty;  
+	}
 	
 	@Id
 	@GeneratedValue

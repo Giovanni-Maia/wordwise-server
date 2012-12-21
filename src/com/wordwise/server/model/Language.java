@@ -1,25 +1,29 @@
 package com.wordwise.server.model;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-public class Language {
+public class Language
+{	
+	public Language (String language, String code)
+	{
+		this.code = code;
+		this.language = language;
+	}
 	
 	@Id
-	@GeneratedValue
-	@Column(name="ID")
-	private Integer id;
+	@Column(name="CODE")
+	private String code;
 	
 	@Column(name="LANGUAGE")
 	private String language;
 
-	public Integer getId() {
-		return id;
+	public String getCode() {
+		return code;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getLanguage() {
