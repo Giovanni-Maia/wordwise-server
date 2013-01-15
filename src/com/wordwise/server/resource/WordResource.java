@@ -11,6 +11,8 @@ import com.wordwise.server.model.Word;
 
 public interface WordResource
 {
+	public static final String RESOURCE_NAME = "words";
+	
 	@Put
     public void add(Word word);
 	
