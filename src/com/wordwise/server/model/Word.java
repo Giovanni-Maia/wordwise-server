@@ -1,5 +1,6 @@
 package com.wordwise.server.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,7 +12,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="WORD")
-public class Word {
+public class Word implements Serializable
+{
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue

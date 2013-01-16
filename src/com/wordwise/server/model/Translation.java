@@ -1,5 +1,6 @@
 package com.wordwise.server.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -16,7 +17,9 @@ import com.wordwise.server.model.Word;
 
 @Entity
 @Table(name="TRANSLATION")
-public class Translation {
+public class Translation implements Serializable
+{
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue

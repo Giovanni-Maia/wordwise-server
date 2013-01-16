@@ -3,18 +3,16 @@ package com.wordwise.server.application;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Translation;
+import com.wordwise.server.model.parameter.ListTranslationParameters;
 import com.wordwise.server.resource.TranslationResource;
 
 public class TranslationServerResource extends ServerResource implements TranslationResource
-{
-
+{		
 	@Override
 	@Put
 	public void add(Translation translation)
@@ -33,15 +31,15 @@ public class TranslationServerResource extends ServerResource implements Transla
 	}
 
 	@Override
-	@Get
-	public List<Translation> list(Language language, Difficulty difficulty,	int numberOfWords)
+	@Post
+	public List<Translation> list(ListTranslationParameters parameters)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Translation> result = null;
 		try
 		{
 			session.beginTransaction();
-			result = session.createQuery("from Translation").list();
+			result = (List<Translation>) session.createQuery("from Translation").list();
 			session.getTransaction().commit();
 		}
 		finally
@@ -50,5 +48,4 @@ public class TranslationServerResource extends ServerResource implements Transla
 		}
         return result;
 	}
-
 }

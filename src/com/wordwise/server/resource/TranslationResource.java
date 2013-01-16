@@ -2,12 +2,11 @@ package com.wordwise.server.resource;
 
 import java.util.List;
 
-import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Translation;
+import com.wordwise.server.model.parameter.ListTranslationParameters;
 
 public interface TranslationResource
 {
@@ -16,6 +15,6 @@ public interface TranslationResource
 	@Put
     public void add(Translation translation);
 	
-	@Get
-	public List<Translation> list(Language language, Difficulty difficulty, int numberOfWords);
+	@Post
+	public List<Translation> list(ListTranslationParameters parameters);
 }

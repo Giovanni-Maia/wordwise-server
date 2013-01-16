@@ -1,10 +1,18 @@
 package com.wordwise.server.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import java.io.Serializable;
 
-public class Language
-{	
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="LANGUAGE")
+public class Language implements Serializable
+{
+	private static final long serialVersionUID = 1L;
+	
 	public Language (String language, String code)
 	{
 		this.code = code;

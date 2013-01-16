@@ -1,5 +1,7 @@
 package com.wordwise.server.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +14,10 @@ import com.wordwise.server.model.Word;
 
 @Entity
 @Table(name="DIFFICULTY")
-public class Difficulty
+public class Difficulty implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	public static final Difficulty EASY = new Difficulty(1);
 	public static final Difficulty MEDIUM = new Difficulty(2);
 	public static final Difficulty HARD = new Difficulty(3);
@@ -57,5 +61,16 @@ public class Difficulty
 
 	public void setDifficulty(Integer difficulty) {
 		this.difficulty = difficulty;
+	}
+	
+	public static Difficulty getByDifficulty(Integer difficulty)
+	{
+		switch(difficulty)
+		{
+			case 1: return EASY;
+			case 2: return MEDIUM;
+			case 3: return HARD;
+		}
+		return null;
 	}
 }

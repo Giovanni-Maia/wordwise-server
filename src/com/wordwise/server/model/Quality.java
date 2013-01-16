@@ -1,5 +1,7 @@
 package com.wordwise.server.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,9 @@ import com.wordwise.server.model.Word;
 
 @Entity
 @Table(name="QUALITY")
-public class Quality {
+public class Quality implements Serializable
+{
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue

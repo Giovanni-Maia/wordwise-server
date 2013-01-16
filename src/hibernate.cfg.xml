@@ -11,5 +11,12 @@
         <property name="show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         <property name="current_session_context_class">thread</property>
+
+        <mapping class="com.wordwise.server.model.Difficulty" />
+        <mapping class="com.wordwise.server.model.Language" />
+        <mapping class="com.wordwise.server.model.Quality" />
+        <mapping class="com.wordwise.server.model.Rate" />
+        <mapping class="com.wordwise.server.model.Translation" />
+        <mapping class="com.wordwise.server.model.Word" />
     </session-factory>
 </hibernate-configuration>
