@@ -39,7 +39,29 @@ public class TranslationServerResource extends ServerResource implements Transla
 		try
 		{
 			session.beginTransaction();
-			result = (List<Translation>) session.createQuery("from Translation").list();
+			
+			StringBuilder hibernateSQL = new StringBuilder();
+			hibernateSQL.append("from Translation t");
+			hibernateSQL.append("    join t.word w");
+			hibernateSQL.append("    join t.language l");
+			hibernateSQL.append("    join t.rates r");
+			hibernateSQL.append(" where");
+			if (parameters.getLanguage() != null)
+			{
+				hibernateSQL.append("    l.code = '"+parameters.getLanguage().getCode()+"' and");
+			}
+			if (parameters.getDifficulty() != null)
+			{
+				hibernateSQL.append("    w.difficulty = "+parameters.getDifficulty().getDifficulty()+"and");
+			}
+			if (parameters.getTranslationsAlreadyUsed() != null && parameters.getTranslationsAlreadyUsed().size() > 0)
+			{
+				hibernateSQL.append("    t.id not in ("+parameters.getTranslationsAlreadyUsed().toString().substring(1, parameters.getTranslationsAlreadyUsed().toString().length()-2)+") and");
+			}
+			hibernateSQL.append("    avg(w.qualities) > 2");
+			hibernateSQL.append(" order by avg(r.rate) desc");
+			
+			result = (List<Translation>) session.createQuery(hibernateSQL.toString()).list();
 			session.getTransaction().commit();
 		}
 		finally

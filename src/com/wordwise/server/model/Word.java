@@ -61,4 +61,10 @@ public class Word implements Serializable
 	public void setQualities(Set<Quality> qualities) {
 		this.qualities = qualities;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return id.toString();
+	}
 }

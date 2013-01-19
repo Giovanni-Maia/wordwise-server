@@ -34,7 +34,7 @@ public class Translation implements Serializable
 	private Word word;
 	
 	@ManyToOne(targetEntity=Language.class)
-	@JoinColumn(name="LANGUAGE_ID")
+	@JoinColumn(name="LANGUAGE_CODE")
 	private Language language;
 	
 	@OneToMany(targetEntity=Rate.class, mappedBy="translation")
@@ -78,5 +78,11 @@ public class Translation implements Serializable
 
 	public void setRates(Set<Rate> rates) {
 		this.rates = rates;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return id.toString();
 	}
 }
