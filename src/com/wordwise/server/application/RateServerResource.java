@@ -14,13 +14,13 @@ public class RateServerResource extends ServerResource implements RateResource
 
 	@Override
 	@Put
-	public void add(List<Rate> wordRatings)
+	public void add(List<Rate> translationRatings)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try
 		{
 			session.beginTransaction();
-			session.save(wordRatings);
+			session.save(translationRatings);
 			session.getTransaction().commit();
 		}
 		finally

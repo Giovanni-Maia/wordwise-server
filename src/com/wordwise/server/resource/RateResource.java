@@ -11,5 +11,5 @@ public interface RateResource
 	public static final String RESOURCE_NAME = "rates";
 	
 	@Put
-    public void add(List<Rate> wordRatings);
+    public void add(List<Rate> translationRatings);
 }

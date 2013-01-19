@@ -4,29 +4,26 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.restlet.resource.Put;
-import org.restlet.resource.ServerResource;
 
-import com.wordwise.server.model.Quality;
-import com.wordwise.server.resource.QualityResource;
+import com.wordwise.server.model.Difficulty;
+import com.wordwise.server.resource.DifficultyResource;
 
-public class QualityServerResource extends ServerResource implements QualityResource
-{
+public class DifficultyServerResource implements DifficultyResource {
 
 	@Override
 	@Put
-	public void add(List<Quality> wordQualities)
-	{
+	public void add(List<Difficulty> wordDifficulties) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try
 		{
 			session.beginTransaction();
-			session.save(wordQualities);
+			session.save(wordDifficulties);
 			session.getTransaction().commit();
 		}
 		finally
 		{
 			session.close();
-		}		
+		}	
 	}
 
 }

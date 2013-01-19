@@ -11,5 +11,5 @@ public interface QualityResource
 	public static final String RESOURCE_NAME = "qualities";
 	
 	@Put
-    public void add(List<Quality> translationQualities);
+    public void add(List<Quality> wordQualities);
 }
