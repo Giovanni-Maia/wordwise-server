@@ -4,6 +4,7 @@ import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
+import com.wordwise.server.resource.DifficultyResource;
 import com.wordwise.server.resource.QualityResource;
 import com.wordwise.server.resource.RateResource;
 import com.wordwise.server.resource.TranslationResource;
@@ -21,6 +22,7 @@ public class WordwiseApplication  extends Application
         router.attach("/"+TranslationResource.RESOURCE_NAME, TranslationServerResource.class);
         router.attach("/"+RateResource.RESOURCE_NAME, RateServerResource.class);
         router.attach("/"+QualityResource.RESOURCE_NAME, QualityServerResource.class);
+        router.attach("/"+DifficultyResource.RESOURCE_NAME, DifficultyServerResource.class);
   
         return router;  
     }  
