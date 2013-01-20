@@ -1,7 +1,5 @@
 package com.wordwise.server.application;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.restlet.resource.Put;
 
@@ -12,7 +10,7 @@ public class DifficultyServerResource implements DifficultyResource {
 
 	@Override
 	@Put
-	public void add(List<Difficulty> wordDifficulties) {
+	public void add(Difficulty wordDifficulties) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try
 		{

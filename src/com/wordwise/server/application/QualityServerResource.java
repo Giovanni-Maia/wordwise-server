@@ -1,7 +1,5 @@
 package com.wordwise.server.application;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
@@ -14,7 +12,7 @@ public class QualityServerResource extends ServerResource implements QualityReso
 
 	@Override
 	@Put
-	public void add(List<Quality> wordQualities)
+	public void add(Quality wordQualities)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try
