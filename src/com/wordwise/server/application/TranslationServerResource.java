@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
@@ -30,7 +31,11 @@ public class TranslationServerResource extends ServerResource implements Transla
 			if (results.size() > 0)
 			{
 				translation.setWord(results.get(0));
-			}			
+			}
+			else
+			{
+				session.save(translation.getWord());
+			}
 			session.save(translation);
 			session.getTransaction().commit();
 		}
@@ -50,28 +55,28 @@ public class TranslationServerResource extends ServerResource implements Transla
 		{
 			session.beginTransaction();
 			
-			StringBuilder hibernateSQL = new StringBuilder();
-			hibernateSQL.append("from Translation t");
-			hibernateSQL.append("    join t.word w");
-			hibernateSQL.append("    join t.language l");
-			hibernateSQL.append("    join t.rates r");
-			hibernateSQL.append(" where");
-			if (parameters.getLanguage() != null)
-			{
-				hibernateSQL.append("    l.code = '"+parameters.getLanguage().getCode()+"' and");
-			}
-			if (parameters.getDifficulty() != null)
-			{
-				hibernateSQL.append("    w.difficulty = "+parameters.getDifficulty().getDifficulty()+"and");
-			}
-			if (parameters.getTranslationsAlreadyUsed() != null && parameters.getTranslationsAlreadyUsed().size() > 0)
-			{
-				hibernateSQL.append("    t.id not in ("+parameters.getTranslationsAlreadyUsed().toString().substring(1, parameters.getTranslationsAlreadyUsed().toString().length()-2)+") and");
-			}
-			hibernateSQL.append("    avg(w.qualities) > 2");
-			hibernateSQL.append(" order by avg(r.rate) desc");
+			Criteria criteria = session.createCriteria(Translation.class);
 			
-			result = (List<Translation>) session.createQuery(hibernateSQL.toString()).list();
+			if (parameters != null && parameters.getLanguage() != null)
+			{
+				criteria.createCriteria("language").add(Restrictions.eq("code", parameters.getLanguage().getCode()));
+			}
+			if (parameters != null && parameters.getDifficulty() != null)
+			{
+				criteria.createCriteria("word").createCriteria("difficulties").add(Restrictions.idEq(parameters.getDifficulty()));
+			}
+			if (parameters != null && parameters.getTranslationsAlreadyUsed() != null && parameters.getTranslationsAlreadyUsed().size() > 0)
+			{
+				criteria.add(Restrictions.not(Restrictions.in("id", parameters.getTranslationsAlreadyUsed())));
+			}
+			if (parameters != null && parameters.getNumberOfTranslations() > 0)
+			{
+				criteria.setMaxResults(parameters.getNumberOfTranslations());
+			}
+			//criteria.createCriteria("word").createCriteria("qualities").add(Restrictions.);
+			//criteria.createCriteria("rates").addOrder(Order.desc("rate"));
+			
+			result = criteria.list();
 			session.getTransaction().commit();
 		}
 		finally

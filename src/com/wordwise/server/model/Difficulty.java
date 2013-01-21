@@ -27,6 +27,8 @@ public class Difficulty implements Serializable
 		this.difficulty = difficulty;  
 	}
 	
+	public Difficulty()	{}
+	
 	@Id
 	@GeneratedValue
 	@Column(name="ID")

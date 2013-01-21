@@ -19,6 +19,8 @@ public class Language implements Serializable
 		this.language = language;
 	}
 	
+	public Language() {};
+	
 	@Id
 	@Column(name="CODE")
 	private String code;
