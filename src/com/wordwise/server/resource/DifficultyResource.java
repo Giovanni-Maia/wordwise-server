@@ -8,5 +8,5 @@ public interface DifficultyResource {
 	public static final String RESOURCE_NAME = "difficulties";
 	
 	@Put
-    public void add(Difficulty wordDifficulties);
+    public void add(Difficulty wordDifficulty);
 }

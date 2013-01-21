@@ -1,7 +1,5 @@
 package com.wordwise.server.resource;
 
-import java.util.List;
-
 import org.restlet.resource.Put;
 
 import com.wordwise.server.model.Rate;

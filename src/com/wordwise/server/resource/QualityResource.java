@@ -9,5 +9,5 @@ public interface QualityResource
 	public static final String RESOURCE_NAME = "qualities";
 	
 	@Put
-    public void add(Quality wordQualities);
+    public void add(Quality wordQuality);
 }
