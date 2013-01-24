@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 import com.wordwise.server.model.Word;
@@ -13,6 +14,7 @@ public class WordServerResource extends ServerResource implements WordResource {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Post
 	public List<Word> list(int number) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Word> result = null;
