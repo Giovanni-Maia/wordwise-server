@@ -64,7 +64,7 @@ public class TranslationServerResource extends ServerResource implements Transla
 			}
 			if (parameters != null && parameters.getDifficulty() != null)
 			{
-				criteria.createCriteria("word").createCriteria("difficulties").add(Restrictions.idEq(parameters.getDifficulty()));
+				criteria.createCriteria("word").createCriteria("difficulties").add(Restrictions.idEq(parameters.getDifficulty().getDifficulty()));
 			}
 			if (parameters != null && parameters.getTranslationsAlreadyUsed() != null && parameters.getTranslationsAlreadyUsed().size() > 0)
 			{
