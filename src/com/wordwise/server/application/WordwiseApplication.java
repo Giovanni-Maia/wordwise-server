@@ -8,6 +8,7 @@ import com.wordwise.server.resource.DifficultyResource;
 import com.wordwise.server.resource.QualityResource;
 import com.wordwise.server.resource.RateResource;
 import com.wordwise.server.resource.TranslationResource;
+import com.wordwise.server.resource.WordResource;
 
 
 public class WordwiseApplication  extends Application
@@ -21,7 +22,8 @@ public class WordwiseApplication  extends Application
         router.attach("/"+RateResource.RESOURCE_NAME, RateServerResource.class);
         router.attach("/"+QualityResource.RESOURCE_NAME, QualityServerResource.class);
         router.attach("/"+DifficultyResource.RESOURCE_NAME, DifficultyServerResource.class);
-  
+        router.attach("/"+WordResource.RESOURCE_NAME, WordServerResource.class);
+       
         return router;  
     }  
 

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
@@ -27,6 +26,7 @@ public class TranslationServerResource extends ServerResource implements Transla
 			session.beginTransaction();
 			Criteria crit = session.createCriteria(Word.class);
 			crit.add(Restrictions.ilike("word", translation.getWord().getWord()));
+			@SuppressWarnings("unchecked")
 			List<Word> results = crit.list();
 			if (results.size() > 0)
 			{
@@ -45,6 +45,7 @@ public class TranslationServerResource extends ServerResource implements Transla
 		}		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Post
 	public List<Translation> list(ListTranslationParameters parameters)
