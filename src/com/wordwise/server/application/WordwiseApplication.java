@@ -25,6 +25,5 @@ public class WordwiseApplication  extends Application
         router.attach("/"+WordResource.RESOURCE_NAME, WordServerResource.class);
        
         return router;  
-    }  
-
+	}
 }
