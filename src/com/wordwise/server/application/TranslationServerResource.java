@@ -2,10 +2,10 @@ package com.wordwise.server.application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.restlet.resource.Post;
@@ -74,11 +74,7 @@ public class TranslationServerResource extends ServerResource implements Transla
 			}
 			if (parameters != null && parameters.getTranslationsAlreadyUsed() != null && parameters.getTranslationsAlreadyUsed().size() > 0)
 			{
-				criteria.add(Restrictions.not(Restrictions.in("id", parameters.getTranslationsAlreadyUsed())));
-			}
-			if (parameters != null && parameters.getNumberOfTranslations() > 0)
-			{
-				criteria.setMaxResults(parameters.getNumberOfTranslations());
+				criteria.add(Restrictions.not(Restrictions.in("id", getIDs(parameters.getTranslationsAlreadyUsed()))));
 			}
 			if (criteriaWord != null)
 			{
@@ -88,12 +84,18 @@ public class TranslationServerResource extends ServerResource implements Transla
 			{
 				criteria.createCriteria("word").createCriteria("qualities", JoinType.LEFT_OUTER_JOIN);
 			}
-			criteria.createCriteria("rates", JoinType.LEFT_OUTER_JOIN).addOrder(Order.desc("rate"));
+			criteria.createCriteria("rates", JoinType.LEFT_OUTER_JOIN);//.addOrder(Order.desc("rate"));
 			
 			result = processDuplicatedObjects(criteria.list());
+			result = processRate(result);
+			result = processQuality(result);
 			if (parameters != null && parameters.getDifficulty() != null)
 			{
 				result = processDifficulty(result, parameters.getDifficulty());
+			}
+			if (parameters != null && parameters.getNumberOfTranslations() > 0)
+			{
+				result = processNumberOfTranslations(result, parameters.getNumberOfTranslations());
 			}
 			session.getTransaction().commit();
 		}
@@ -104,7 +106,17 @@ public class TranslationServerResource extends ServerResource implements Transla
         return result;
 	}
 
-	private List<Translation> processDuplicatedObjects(List<Translation> list)
+	private static Integer[] getIDs(List<Translation> translationsAlreadyUsed)
+	{
+		Integer[] returnArray = new Integer[translationsAlreadyUsed.size()];
+		for (int i = 0; i < translationsAlreadyUsed.size(); i++)
+		{
+			returnArray[i] = translationsAlreadyUsed.get(i).getId();
+		}
+		return returnArray;
+	}
+
+	private static List<Translation> processDuplicatedObjects(List<Translation> list)
 	{
 		List<Translation> returnList = new ArrayList<Translation>();
 		for (Translation object : list)
@@ -115,6 +127,34 @@ public class TranslationServerResource extends ServerResource implements Transla
 			}
 		}
 		
+		return returnList;
+	}
+	
+	private static List<Translation> processRate(List<Translation> result)
+	{
+		List<Translation> returnList = new ArrayList<Translation>();
+		for (Translation translation : result)
+		{
+			double rateAVG = translation.getRateAVG();
+			if (rateAVG == 0 || rateAVG > 2)
+			{
+				returnList.add(translation);
+			}
+		}
+		return returnList;
+	}
+	
+	private static List<Translation> processQuality(List<Translation> result)
+	{
+		List<Translation> returnList = new ArrayList<Translation>();
+		for (Translation translation : result)
+		{
+			double qualityAVG = translation.getWord().getQualityAVG();
+			if (qualityAVG == 0 || qualityAVG > 2)
+			{
+				returnList.add(translation);
+			}
+		}
 		return returnList;
 	}
 
@@ -142,5 +182,23 @@ public class TranslationServerResource extends ServerResource implements Transla
 			}
 		}
 		return returnList;
+	}
+	
+	private static List<Translation> processNumberOfTranslations(List<Translation> result, int numberOfTranslations)
+	{
+		if (result.size() > numberOfTranslations)
+		{
+			Random random = new Random();
+			List<Translation> returnList = new ArrayList<Translation>();
+			for (int i = 0; i < numberOfTranslations; i++)
+			{
+				Translation translation = result.get(random.nextInt(result.size()));
+				returnList.add(translation);
+				result.remove(translation);
+			}
+			
+			return returnList;
+		}
+		return result;
 	}
 }

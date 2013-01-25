@@ -80,9 +80,17 @@ public class Translation implements Serializable
 		this.rates = rates;
 	}
 	
-	@Override
-	public String toString()
+	public double getRateAVG()
 	{
-		return id.toString();
+		double rateAVG = 0.0;
+		if (rates.size() > 0)
+		{
+			for (Rate rate : rates)
+			{
+				rateAVG += rate.getRate();
+			}
+			rateAVG /=  (double) rates.size();
+		}
+		return rateAVG;
 	}
 }

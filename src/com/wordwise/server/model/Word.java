@@ -82,4 +82,18 @@ public class Word implements Serializable
 		}
 		return difficultyAVG;
 	}
+
+	public double getQualityAVG()
+	{
+		double qualityAVG = 0.0;
+		if (qualities.size() > 0)
+		{
+			for (Quality quality : qualities)
+			{
+				qualityAVG += quality.getQuality();
+			}
+			qualityAVG /=  (double) qualities.size();
+		}
+		return qualityAVG;
+	}
 }

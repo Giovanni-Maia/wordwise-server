@@ -110,4 +110,15 @@ public class TranslationResourceTestCase
 		assertEquals(translationSaved.getLanguage().getCode(), translation.getLanguage().getCode());
 	}
 
+	@Test
+	public void testListTranslationsNotIn()
+	{
+		List<Translation> list = translationResource.list(new ListTranslationParameters(de, null, 5, null));
+		
+		assertEquals(1, list.size());
+		
+		list = translationResource.list(new ListTranslationParameters(null, null, 5, list));
+		
+		assertEquals(1, list.size());
+	}
 }
