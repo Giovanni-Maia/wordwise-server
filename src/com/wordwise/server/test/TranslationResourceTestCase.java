@@ -1,6 +1,6 @@
 package com.wordwise.server.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -17,21 +17,24 @@ import com.wordwise.server.model.Word;
 import com.wordwise.server.model.parameter.ListTranslationParameters;
 import com.wordwise.server.resource.TranslationResource;
 
-public class WordwiseTestCase {
-	
+public class TranslationResourceTestCase
+{
 	private static TranslationResource translationResource = new TranslationServerResource();
 	private static Language pt = new Language("Portuguese", "pt");
 	private static Language de = new Language("German", "de");
+	private static Word word = new Word();
 	
 	@BeforeClass
 	public static void prepareDB()
 	{
+		word.setWord("table");
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try
 		{
 			session.beginTransaction();
 			session.save(pt);
 			session.save(de);
+			session.save(word);
 			session.getTransaction().commit();
 		}
 		finally
@@ -70,8 +73,6 @@ public class WordwiseTestCase {
 	{
 		Translation translation = new Translation();
 		translation.setLanguage(pt);
-		Word word = new Word();
-		word.setWord("table");
 		translation.setWord(word);
 		translation.setTranslation("mesa");
 		
@@ -93,18 +94,12 @@ public class WordwiseTestCase {
 	{
 		Translation translation = new Translation();
 		translation.setLanguage(de);
-		Word word = new Word();
-		word.setWord("table");
 		translation.setWord(word);
 		translation.setTranslation("Tisch");
 		
 		translationResource.add(translation);
 		
-		List<Translation> list = translationResource.list(null);
-		
-		assertEquals(2, list.size());
-		
-		list = translationResource.list(new ListTranslationParameters(de, null, 5, null));
+		List<Translation> list = translationResource.list(new ListTranslationParameters(de, null, 5, null));
 		
 		assertEquals(1, list.size());
 		
@@ -114,4 +109,5 @@ public class WordwiseTestCase {
 		assertEquals(translationSaved.getLanguage().getLanguage(), translation.getLanguage().getLanguage());
 		assertEquals(translationSaved.getLanguage().getCode(), translation.getLanguage().getCode());
 	}
+
 }
