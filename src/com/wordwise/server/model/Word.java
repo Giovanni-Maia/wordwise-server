@@ -3,6 +3,7 @@ package com.wordwise.server.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,10 +25,10 @@ public class Word implements Serializable
 	@Column(name="WORD")
 	private String word;
 	
-	@OneToMany(targetEntity=Difficulty.class, mappedBy="word")
+	@OneToMany(targetEntity=Difficulty.class, mappedBy="word", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<Difficulty> difficulties;
 	
-	@OneToMany(targetEntity=Quality.class, mappedBy="word")
+	@OneToMany(targetEntity=Quality.class, mappedBy="word", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<Quality> qualities;
 
 	public Integer getId() {
@@ -66,5 +67,33 @@ public class Word implements Serializable
 	public String toString()
 	{
 		return id.toString();
+	}
+
+	public double getDifficultyAVG()
+	{
+		double difficultyAVG = 0.0;
+		if (difficulties.size() > 0)
+		{
+			for (Difficulty difficulty : difficulties)
+			{
+				difficultyAVG += difficulty.getDifficulty();
+			}
+			difficultyAVG /=  (double) difficulties.size();
+		}
+		return difficultyAVG;
+	}
+
+	public double getQualityAVG()
+	{
+		double qualityAVG = 0.0;
+		if (qualities.size() > 0)
+		{
+			for (Quality quality : qualities)
+			{
+				qualityAVG += quality.getQuality();
+			}
+			qualityAVG /=  (double) qualities.size();
+		}
+		return qualityAVG;
 	}
 }

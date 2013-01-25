@@ -11,12 +11,12 @@ public class DifficultyServerResource extends ServerResource implements Difficul
 {
 	@Override
 	@Put
-	public void add(Difficulty wordDifficulties) {
+	public void add(Difficulty wordDifficulty) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try
 		{
 			session.beginTransaction();
-			session.save(wordDifficulties);
+			session.save(wordDifficulty);
 			session.getTransaction().commit();
 		}
 		finally
