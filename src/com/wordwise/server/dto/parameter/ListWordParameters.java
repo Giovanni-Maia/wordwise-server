@@ -1,4 +1,4 @@
-package com.wordwise.server.model.parameter;
+package com.wordwise.server.dto.parameter;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ public class ListWordParameters implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int numberOfWords;
+	private Integer numberOfWords;
 	
 	public ListWordParameters(int numberOfWords )
 	{

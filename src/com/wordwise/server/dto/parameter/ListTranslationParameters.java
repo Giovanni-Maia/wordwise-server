@@ -1,22 +1,22 @@
-package com.wordwise.server.model.parameter;
+package com.wordwise.server.dto.parameter;
 
 import java.io.Serializable;
 import java.util.List;
 
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOLanguage;
+import com.wordwise.server.dto.DTOTranslation;
 
 public class ListTranslationParameters implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	private Language language;
-	private Difficulty difficulty;
+	private DTOLanguage language;
+	private DTODifficulty difficulty;
 	private int numberOfTranslations;
-	private List<Translation> translationsAlreadyUsed;
+	private List<DTOTranslation> translationsAlreadyUsed;
 	
-	public ListTranslationParameters(Language language, Difficulty difficulty, int numberOfTranslations, List<Translation> translationsAlreadyUsed)
+	public ListTranslationParameters(DTOLanguage language, DTODifficulty difficulty, int numberOfTranslations, List<DTOTranslation> translationsAlreadyUsed)
 	{
 		super();
 		this.language = language;
@@ -25,19 +25,19 @@ public class ListTranslationParameters implements Serializable
 		this.translationsAlreadyUsed = translationsAlreadyUsed;
 	}
 
-	public Language getLanguage() {
+	public DTOLanguage getLanguage() {
 		return language;
 	}
 
-	public void setLanguage(Language language) {
+	public void setLanguage(DTOLanguage language) {
 		this.language = language;
 	}
 
-	public Difficulty getDifficulty() {
+	public DTODifficulty getDifficulty() {
 		return difficulty;
 	}
 
-	public void setDifficulty(Difficulty difficulty) {
+	public void setDifficulty(DTODifficulty difficulty) {
 		this.difficulty = difficulty;
 	}
 
@@ -49,11 +49,11 @@ public class ListTranslationParameters implements Serializable
 		this.numberOfTranslations = numberOfTranslations;
 	}
 
-	public List<Translation> getTranslationsAlreadyUsed() {
+	public List<DTOTranslation> getTranslationsAlreadyUsed() {
 		return translationsAlreadyUsed;
 	}
 
-	public void setTranslationsAlreadyUsed(List<Translation> translationsAlreadyUsed) {
+	public void setTranslationsAlreadyUsed(List<DTOTranslation> translationsAlreadyUsed) {
 		this.translationsAlreadyUsed = translationsAlreadyUsed;
 	}
 }

@@ -1,9 +1,8 @@
 package com.wordwise.server.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,11 +24,11 @@ public class Word implements Serializable
 	@Column(name="WORD")
 	private String word;
 	
-	@OneToMany(targetEntity=Difficulty.class, mappedBy="word", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
-	private Set<Difficulty> difficulties;
+	@OneToMany(targetEntity=Difficulty.class, mappedBy="word")//, cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<Difficulty> difficulties;
 	
-	@OneToMany(targetEntity=Quality.class, mappedBy="word", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
-	private Set<Quality> qualities;
+	@OneToMany(targetEntity=Quality.class, mappedBy="word")//, cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<Quality> qualities;
 
 	public Integer getId() {
 		return id;
@@ -47,19 +46,19 @@ public class Word implements Serializable
 		this.word = word;
 	}
 
-	public Set<Difficulty> getDifficulties() {
+	public List<Difficulty> getDifficulties() {
 		return difficulties;
 	}
 
-	public void setDifficulties(Set<Difficulty> difficulties) {
+	public void setDifficulties(List<Difficulty> difficulties) {
 		this.difficulties = difficulties;
 	}
 
-	public Set<Quality> getQualities() {
+	public List<Quality> getQualities() {
 		return qualities;
 	}
 
-	public void setQualities(Set<Quality> qualities) {
+	public void setQualities(List<Quality> qualities) {
 		this.qualities = qualities;
 	}
 	

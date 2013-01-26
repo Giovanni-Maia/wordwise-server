@@ -12,9 +12,12 @@ import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
+import com.wordwise.server.model.factory.DTOTranslationFactory;
+import com.wordwise.server.model.factory.DTOWordFactory;
 import com.wordwise.server.model.parameter.ListTranslationParameters;
 import com.wordwise.server.resource.TranslationResource;
 
@@ -22,23 +25,24 @@ public class TranslationServerResource extends ServerResource implements Transla
 {		
 	@Override
 	@Put
-	public void add(Translation translation)
+	public void add(DTOTranslation dtoTranslation)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try
 		{
 			session.beginTransaction();
 			Criteria crit = session.createCriteria(Word.class);
-			crit.add(Restrictions.ilike("word", translation.getWord().getWord()));
+			crit.add(Restrictions.ilike("word", dtoTranslation.word.word));
 			@SuppressWarnings("unchecked")
 			List<Word> results = crit.list();
+			Translation translation = DTOTranslationFactory.build(dtoTranslation);
 			if (results.size() > 0)
 			{
 				translation.setWord(results.get(0));
 			}
 			else
 			{
-				session.save(translation.getWord());
+				session.save(DTOWordFactory.build(translation.getWord()));
 			}
 			session.save(translation);
 			session.getTransaction().commit();
@@ -52,7 +56,7 @@ public class TranslationServerResource extends ServerResource implements Transla
 	@SuppressWarnings("unchecked")
 	@Override
 	@Post
-	public List<Translation> list(ListTranslationParameters parameters)
+	public List<DTOTranslation> list(ListTranslationParameters parameters)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Translation> result = null;
@@ -65,7 +69,7 @@ public class TranslationServerResource extends ServerResource implements Transla
 			
 			if (parameters != null && parameters.getLanguage() != null)
 			{
-				criteria.createCriteria("language").add(Restrictions.eq("code", parameters.getLanguage().getCode()));
+				criteria.createCriteria("language").add(Restrictions.eq("code", parameters.getLanguage().code));
 			}
 			if (parameters != null && parameters.getDifficulty() != null)
 			{
@@ -91,7 +95,7 @@ public class TranslationServerResource extends ServerResource implements Transla
 			result = processQuality(result);
 			if (parameters != null && parameters.getDifficulty() != null)
 			{
-				result = processDifficulty(result, parameters.getDifficulty());
+				result = processDifficulty(result, Difficulty.getByDifficulty(parameters.getDifficulty().difficulty));
 			}
 			if (parameters != null && parameters.getNumberOfTranslations() > 0)
 			{
@@ -103,15 +107,15 @@ public class TranslationServerResource extends ServerResource implements Transla
 		{
 			session.close();
 		}
-        return result;
+        return DTOTranslationFactory.build(result);
 	}
 
-	private static Integer[] getIDs(List<Translation> translationsAlreadyUsed)
+	private static Integer[] getIDs(List<DTOTranslation> translationsAlreadyUsed)
 	{
 		Integer[] returnArray = new Integer[translationsAlreadyUsed.size()];
 		for (int i = 0; i < translationsAlreadyUsed.size(); i++)
 		{
-			returnArray[i] = translationsAlreadyUsed.get(i).getId();
+			returnArray[i] = translationsAlreadyUsed.get(i).id;
 		}
 		return returnArray;
 	}

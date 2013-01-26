@@ -10,8 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.wordwise.server.model.Word;
-
 @Entity
 @Table(name="QUALITY")
 public class Quality implements Serializable
