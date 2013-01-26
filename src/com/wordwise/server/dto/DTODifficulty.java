@@ -1,10 +1,6 @@
 package com.wordwise.server.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.wordwise.server.model.Difficulty;
 
 public class DTODifficulty implements Serializable
 {
@@ -13,24 +9,49 @@ public class DTODifficulty implements Serializable
 	public DTOWord word;
 	public Integer difficulty;
 	
-	public static DTODifficulty build(Difficulty difficulty)
+	public static final DTODifficulty EASY = new DTODifficulty(1);
+	public static final DTODifficulty MEDIUM = new DTODifficulty(2);
+	public static final DTODifficulty HARD = new DTODifficulty(3);
+	
+	private DTODifficulty (int difficulty)
 	{
-		DTODifficulty dtoDifficulty = new DTODifficulty();
-		
-		dtoDifficulty.id = difficulty.getId();
-		
-		dtoDifficulty.difficulty = difficulty.getDifficulty();
-		
-		return dtoDifficulty;
+		this.difficulty = difficulty;  
 	}
 	
-	public static ArrayList<DTODifficulty> build(List<Difficulty> difficultyList)
+	public DTODifficulty(){}
+	
+	public static DTODifficulty getByDifficulty(Integer difficulty)
 	{
-		ArrayList<DTODifficulty> returnList = new ArrayList<DTODifficulty>();
-		for (Difficulty difficulty : difficultyList)
+		switch(difficulty)
 		{
-			returnList.add(build(difficulty));
+			case 1: return EASY;
+			case 2: return MEDIUM;
+			case 3: return HARD;
 		}
-		return returnList;
+		return null;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public DTOWord getWord() {
+		return word;
+	}
+
+	public void setWord(DTOWord word) {
+		this.word = word;
+	}
+
+	public Integer getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(Integer difficulty) {
+		this.difficulty = difficulty;
 	}
 }
