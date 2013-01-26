@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import com.wordwise.server.application.WordServerResource;
 import com.wordwise.server.dto.DTOWord;
-import com.wordwise.server.model.parameter.ListWordParameters;
+import com.wordwise.server.dto.parameter.ListWordParameters;
 import com.wordwise.server.resource.WordResource;
 
 public class WordResourceTestCase

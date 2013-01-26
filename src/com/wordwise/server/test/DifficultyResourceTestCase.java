@@ -1,29 +1,5 @@
 package com.wordwise.server.test;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.List;
-
-import org.hibernate.Session;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import com.wordwise.server.application.DifficultyServerResource;
-import com.wordwise.server.application.HibernateUtil;
-import com.wordwise.server.application.TranslationServerResource;
-import com.wordwise.server.dto.DTOTranslation;
-import com.wordwise.server.dto.DTOWord;
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
-import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
-import com.wordwise.server.model.factory.DTODifficultyFactory;
-import com.wordwise.server.model.factory.DTOTranslationFactory;
-import com.wordwise.server.model.factory.DTOWordFactory;
-import com.wordwise.server.model.parameter.ListTranslationParameters;
-import com.wordwise.server.resource.DifficultyResource;
-import com.wordwise.server.resource.TranslationResource;
 
 public class DifficultyResourceTestCase
 {

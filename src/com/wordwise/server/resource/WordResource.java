@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.restlet.resource.Post;
 
 import com.wordwise.server.dto.DTOWord;
-import com.wordwise.server.model.parameter.ListWordParameters;
+import com.wordwise.server.dto.parameter.ListWordParameters;
 
 public interface WordResource {
 	public static final String RESOURCE_NAME = "words";

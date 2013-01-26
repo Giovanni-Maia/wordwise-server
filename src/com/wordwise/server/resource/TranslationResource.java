@@ -6,7 +6,7 @@ import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 
 import com.wordwise.server.dto.DTOTranslation;
-import com.wordwise.server.model.parameter.ListTranslationParameters;
+import com.wordwise.server.dto.parameter.ListTranslationParameters;
 
 public interface TranslationResource
 {

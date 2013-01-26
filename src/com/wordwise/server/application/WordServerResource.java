@@ -8,9 +8,9 @@ import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 import com.wordwise.server.dto.DTOWord;
+import com.wordwise.server.dto.parameter.ListWordParameters;
 import com.wordwise.server.model.Word;
 import com.wordwise.server.model.factory.DTOWordFactory;
-import com.wordwise.server.model.parameter.ListWordParameters;
 import com.wordwise.server.resource.WordResource;
 
 public class WordServerResource extends ServerResource implements WordResource {

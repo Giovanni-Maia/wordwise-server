@@ -13,12 +13,12 @@ import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
 import com.wordwise.server.dto.DTOTranslation;
+import com.wordwise.server.dto.parameter.ListTranslationParameters;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
 import com.wordwise.server.model.factory.DTOTranslationFactory;
 import com.wordwise.server.model.factory.DTOWordFactory;
-import com.wordwise.server.model.parameter.ListTranslationParameters;
 import com.wordwise.server.resource.TranslationResource;
 
 public class TranslationServerResource extends ServerResource implements TranslationResource
