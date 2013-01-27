@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.wordwise.server.dto.DTOLanguage;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.server.model.Language;
+import com.wordwise.server.model.Translation;
 
 public class DTOLanguageFactory
 {
@@ -27,5 +29,13 @@ public class DTOLanguageFactory
 			returnList.add(build(language));
 		}
 		return returnList;
+	}
+	
+	public static Language build(DTOLanguage dtoLanguage)
+	{
+		Language language = new Language();
+		language.setCode(dtoLanguage.getCode());
+		language.setLanguage(dtoLanguage.getLanguage());
+		return language;
 	}
 }

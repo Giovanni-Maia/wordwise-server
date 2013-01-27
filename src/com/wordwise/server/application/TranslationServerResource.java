@@ -43,7 +43,7 @@ public class TranslationServerResource extends ServerResource implements Transla
 			}
 			else
 			{
-				session.save(DTOWordFactory.build(translation.getWord()));
+				session.save(translation.getWord());
 			}
 			session.save(translation);
 			session.getTransaction().commit();

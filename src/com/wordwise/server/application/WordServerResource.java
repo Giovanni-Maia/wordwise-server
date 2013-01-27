@@ -2,6 +2,7 @@ package com.wordwise.server.application;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
@@ -25,7 +26,8 @@ public class WordServerResource extends ServerResource implements WordResource {
 			session.beginTransaction();
 
 			Criteria criteria = session.createCriteria(Word.class);
-
+			//the criteria to return random rows
+			criteria.add(Restrictions.sqlRestriction("1=1 order by rand()"));
 			if (parameters.getNumberOfWords() > 0) {
 				criteria.setMaxResults(parameters.getNumberOfWords());
 			}
