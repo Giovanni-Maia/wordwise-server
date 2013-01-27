@@ -13,6 +13,7 @@ import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
 import com.wordwise.server.dto.DTOTranslation;
+import com.wordwise.server.dto.parameter.ListDTOTranslation;
 import com.wordwise.server.dto.parameter.ListTranslationParameters;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
@@ -56,7 +57,7 @@ public class TranslationServerResource extends ServerResource implements Transla
 	@SuppressWarnings("unchecked")
 	@Override
 	@Post
-	public List<DTOTranslation> list(ListTranslationParameters parameters)
+	public ListDTOTranslation list(ListTranslationParameters parameters)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Translation> result = null;

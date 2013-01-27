@@ -1,13 +1,11 @@
 package com.wordwise.server.application;
 
-import java.util.ArrayList;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
-import com.wordwise.server.dto.DTOWord;
+import com.wordwise.server.dto.parameter.ListDTOWord;
 import com.wordwise.server.dto.parameter.ListWordParameters;
 import com.wordwise.server.model.Word;
 import com.wordwise.server.model.factory.DTOWordFactory;
@@ -18,10 +16,10 @@ public class WordServerResource extends ServerResource implements WordResource {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Post
-	public ArrayList<DTOWord> list(ListWordParameters parameters) {
+	public ListDTOWord list(ListWordParameters parameters) {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		ArrayList<DTOWord> result = new ArrayList<DTOWord>();
+		ListDTOWord result = new ListDTOWord();
 		try {
 			System.out.println("Beginning transactions");
 			session.beginTransaction();

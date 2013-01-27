@@ -1,9 +1,9 @@
 package com.wordwise.server.model.factory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.wordwise.server.dto.DTOTranslation;
+import com.wordwise.server.dto.parameter.ListDTOTranslation;
 import com.wordwise.server.model.Translation;
 
 public class DTOTranslationFactory
@@ -25,9 +25,9 @@ public class DTOTranslationFactory
 		return dtoTranslation;
 	}
 	
-	public static ArrayList<DTOTranslation> build(List<Translation> translationList)
+	public static ListDTOTranslation build(List<Translation> translationList)
 	{
-		ArrayList<DTOTranslation> returnList = new ArrayList<DTOTranslation>();
+		ListDTOTranslation returnList = new ListDTOTranslation();
 		for (Translation translation : translationList)
 		{
 			returnList.add(build(translation));
