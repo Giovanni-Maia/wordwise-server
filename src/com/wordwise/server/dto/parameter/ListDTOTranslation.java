@@ -9,7 +9,7 @@ public class ListDTOTranslation extends ArrayList<DTOTranslation>
 {
 	private static final long serialVersionUID = 1L;
 	
-	public List<DTOTranslation> getDTOWordList()
+	public List<DTOTranslation> getDTOTranslationList()
 	{
 		List<DTOTranslation> returnList = new ArrayList<DTOTranslation>();
 		for (DTOTranslation dtoTranslation : this) {
