@@ -1,7 +1,7 @@
 package com.wordwise.server.model.factory;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.model.Difficulty;
@@ -19,7 +19,7 @@ public class DTODifficultyFactory
 		return dtoDifficulty;
 	}
 	
-	public static ArrayList<DTODifficulty> build(List<Difficulty> difficultyList)
+	public static ArrayList<DTODifficulty> build(Set<Difficulty> difficultyList)
 	{
 		ArrayList<DTODifficulty> returnList = new ArrayList<DTODifficulty>();
 		for (Difficulty difficulty : difficultyList)

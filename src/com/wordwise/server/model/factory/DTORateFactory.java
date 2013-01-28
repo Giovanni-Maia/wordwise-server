@@ -1,7 +1,7 @@
 package com.wordwise.server.model.factory;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import com.wordwise.server.dto.DTORate;
 import com.wordwise.server.model.Rate;
@@ -19,7 +19,7 @@ public class DTORateFactory
 		return dtoRate;
 	}
 	
-	public static ArrayList<DTORate> build(List<Rate> rateList)
+	public static ArrayList<DTORate> build(Set<Rate> rateList)
 	{
 		ArrayList<DTORate> returnList = new ArrayList<DTORate>();
 		for (Rate rate : rateList)

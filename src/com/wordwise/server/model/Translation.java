@@ -1,7 +1,7 @@
 package com.wordwise.server.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,7 +36,7 @@ public class Translation implements Serializable
 	private Language language;
 	
 	@OneToMany(targetEntity=Rate.class, mappedBy="translation")
-	private List<Rate> rates;
+	private Set<Rate> rates;
 
 	public Integer getId() {
 		return id;
@@ -70,11 +70,11 @@ public class Translation implements Serializable
 		this.language = language;
 	}
 
-	public List<Rate> getRates() {
+	public Set<Rate> getRates() {
 		return rates;
 	}
 
-	public void setRates(List<Rate> rates) {
+	public void setRates(Set<Rate> rates) {
 		this.rates = rates;
 	}
 	

@@ -19,7 +19,6 @@ import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
 import com.wordwise.server.model.factory.DTOTranslationFactory;
-import com.wordwise.server.model.factory.DTOWordFactory;
 import com.wordwise.server.resource.TranslationResource;
 
 public class TranslationServerResource extends ServerResource implements TranslationResource

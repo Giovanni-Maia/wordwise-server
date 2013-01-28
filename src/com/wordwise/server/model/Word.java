@@ -1,7 +1,7 @@
 package com.wordwise.server.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,10 +25,10 @@ public class Word implements Serializable
 	private String word;
 	
 	@OneToMany(targetEntity=Difficulty.class, mappedBy="word")//, cascade={CascadeType.PERSIST, CascadeType.REMOVE})
-	private List<Difficulty> difficulties;
+	private Set<Difficulty> difficulties;
 	
 	@OneToMany(targetEntity=Quality.class, mappedBy="word")//, cascade={CascadeType.PERSIST, CascadeType.REMOVE})
-	private List<Quality> qualities;
+	private Set<Quality> qualities;
 
 	public Integer getId() {
 		return id;
@@ -46,19 +46,19 @@ public class Word implements Serializable
 		this.word = word;
 	}
 
-	public List<Difficulty> getDifficulties() {
+	public Set<Difficulty> getDifficulties() {
 		return difficulties;
 	}
 
-	public void setDifficulties(List<Difficulty> difficulties) {
+	public void setDifficulties(Set<Difficulty> difficulties) {
 		this.difficulties = difficulties;
 	}
 
-	public List<Quality> getQualities() {
+	public Set<Quality> getQualities() {
 		return qualities;
 	}
 
-	public void setQualities(List<Quality> qualities) {
+	public void setQualities(Set<Quality> qualities) {
 		this.qualities = qualities;
 	}
 	

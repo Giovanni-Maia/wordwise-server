@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.wordwise.server.dto.DTOLanguage;
-import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.server.model.Language;
-import com.wordwise.server.model.Translation;
 
 public class DTOLanguageFactory
 {

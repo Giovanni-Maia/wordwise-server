@@ -1,7 +1,7 @@
 package com.wordwise.server.model.factory;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import com.wordwise.server.dto.DTOQuality;
 import com.wordwise.server.model.Quality;
@@ -19,7 +19,7 @@ public class DTOQualityFactory
 		return dtoQuality;
 	}
 	
-	public static ArrayList<DTOQuality> build(List<Quality> qualityList)
+	public static ArrayList<DTOQuality> build(Set<Quality> qualityList)
 	{
 		ArrayList<DTOQuality> returnList = new ArrayList<DTOQuality>();
 		for (Quality quality : qualityList)
