@@ -28,7 +28,7 @@ public class WordServerResource extends ServerResource implements WordResource {
 			Criteria criteria = session.createCriteria(Word.class);
 			//the criteria to return random rows
 			criteria.add(Restrictions.sqlRestriction("1=1 order by rand()"));
-			if (parameters.getNumberOfWords() > 0) {
+			if (parameters != null && parameters.getNumberOfWords() > 0) {
 				criteria.setMaxResults(parameters.getNumberOfWords());
 			}
 			result = DTOWordFactory.build(criteria.list());

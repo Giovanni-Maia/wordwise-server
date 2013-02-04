@@ -39,7 +39,7 @@ public class DTOTranslationFactory
 	{
 		Translation translation = new Translation();
 		translation.setId(dtoTranslation.id);
-		translation.setTranslation(dtoTranslation.translation);
+		translation.setTranslation(dtoTranslation.translation.trim());
 		translation.setWord(DTOWordFactory.build(dtoTranslation.getWord()));
 		translation.setLanguage(DTOLanguageFactory.build(dtoTranslation.getLanguage()));
 		return translation;

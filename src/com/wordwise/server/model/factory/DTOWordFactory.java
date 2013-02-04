@@ -37,7 +37,7 @@ public class DTOWordFactory
 	{
 		Word word = new Word();
 		word.setId(dtoWord.id);
-		word.setWord(dtoWord.getWord());
+		word.setWord(dtoWord.getWord().trim());
 		return word;
 	}
 }

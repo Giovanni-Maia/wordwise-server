@@ -33,14 +33,13 @@ public class TranslationServerResource extends ServerResource implements
 			crit.add(Restrictions.ilike("word", dtoTranslation.word.word));
 			@SuppressWarnings("unchecked")
 			List<Word> results = crit.list();
-			Translation translation = DTOTranslationFactory
-					.build(dtoTranslation);
+			Translation translation = DTOTranslationFactory.build(dtoTranslation);
 			if (results.size() > 0) {
 				translation.setWord(results.get(0));
-				session.save(translation);
 			} else {
 				session.save(translation.getWord());
 			}
+			session.save(translation);
 
 			session.getTransaction().commit();
 		} finally {
@@ -54,6 +53,7 @@ public class TranslationServerResource extends ServerResource implements
 	public ListDTOTranslation list(ListTranslationParameters parameters) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Translation> result = null;
+		ListDTOTranslation returnList = null;
 		try {
 			session.beginTransaction();
 
@@ -95,11 +95,12 @@ public class TranslationServerResource extends ServerResource implements
 				result = processNumberOfTranslations(result,
 						parameters.getNumberOfTranslations());
 			}
+			returnList = DTOTranslationFactory.build(result);
 			session.getTransaction().commit();
 		} finally {
 			session.close();
 		}
-		return DTOTranslationFactory.build(result);
+		return returnList;
 	}
 
 	private static Integer[] getIDs(List<DTOTranslation> translationsAlreadyUsed) {
