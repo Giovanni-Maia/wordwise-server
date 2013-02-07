@@ -1,0 +1,12 @@
+delete from quality;
+delete from rate;
+delete from difficulty;
+delete from translation;
+delete from language;
+delete from word;
+
+insert into LANGUAGE values ("en", "English");
+insert into LANGUAGE values ("de", "German");
+insert into LANGUAGE values ("es", "Spanish");
+insert into LANGUAGE values ("tr", "Turkish");
+insert into LANGUAGE values ("pt", "Brazilian Portuguese");

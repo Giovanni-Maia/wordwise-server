@@ -77,7 +77,7 @@ public class WordResourceTestCase
 		WordResource wordResource = new WordServerResource();
 		List<DTOWord> list = wordResource.list(null);
 		assertFalse(list == null);
-		assertEquals(list.size(), 3);
+		assertEquals(3, list.size());
 	}
 	
 	@Test
@@ -86,6 +86,6 @@ public class WordResourceTestCase
 		WordResource wordResource = new WordServerResource();
 		List<DTOWord> list = wordResource.list(new ListWordParameters(2));
 		assertFalse(list == null);
-		assertEquals(list.size(), 2);
+		assertEquals(2, list.size());
 	}
 }
