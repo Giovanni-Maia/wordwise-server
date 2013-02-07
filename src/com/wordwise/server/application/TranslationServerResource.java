@@ -138,7 +138,7 @@ public class TranslationServerResource extends ServerResource implements
 		List<Translation> returnList = new ArrayList<Translation>();
 		for (Translation translation : result) {
 			double qualityAVG = translation.getWord().getQualityAVG();
-			if (qualityAVG == 0 || qualityAVG > 0.5) {
+			if (qualityAVG == 0 || qualityAVG > 0) {
 				returnList.add(translation);
 			}
 		}
