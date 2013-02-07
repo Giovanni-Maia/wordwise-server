@@ -10,3 +10,48 @@ insert into LANGUAGE values ("de", "German");
 insert into LANGUAGE values ("es", "Spanish");
 insert into LANGUAGE values ("tr", "Turkish");
 insert into LANGUAGE values ("pt-BR", "Brazilian Portuguese");
+
+insert into WORD values (1, "table");
+insert into WORD values (2, "door");
+insert into WORD values (3, "floor");
+insert into WORD values (4, "chair");
+insert into WORD values (5, "window");
+insert into WORD values (6, "wall");
+insert into WORD values (7, "bed");
+insert into WORD values (8, "box");
+
+insert into TRANSLATION values (1, "mesa", 1, "pt-BR");
+insert into TRANSLATION values (2, "porta", 2, "pt-BR");
+insert into TRANSLATION values (3, "chão", 3, "pt-BR");
+insert into TRANSLATION values (4, "cadeira", 4, "pt-BR");
+insert into TRANSLATION values (5, "janela", 5, "pt-BR");
+insert into TRANSLATION values (6, "parede", 6, "pt-BR");
+insert into TRANSLATION values (7, "cama", 7, "pt-BR");
+insert into TRANSLATION values (8, "caixa", 8, "pt-BR");
+
+insert into TRANSLATION values (9, "mesa", 1, "es");
+insert into TRANSLATION values (10, "puerta", 2, "es");
+insert into TRANSLATION values (11, "piso", 3, "es");
+insert into TRANSLATION values (12, "silla", 4, "es");
+insert into TRANSLATION values (13, "ventana", 5, "es");
+insert into TRANSLATION values (14, "pared", 6, "es");
+insert into TRANSLATION values (15, "cama", 7, "es");
+insert into TRANSLATION values (16, "caja", 8, "es");
+
+insert into TRANSLATION values (17, "tisch", 1, "de");
+insert into TRANSLATION values (18, "tür", 2, "de");
+insert into TRANSLATION values (19, "boden", 3, "de");
+insert into TRANSLATION values (20, "stuhl", 4, "de");
+insert into TRANSLATION values (21, "fenster", 5, "de");
+insert into TRANSLATION values (22, "wand", 6, "de");
+insert into TRANSLATION values (23, "bett", 7, "de");
+insert into TRANSLATION values (24, "box", 8, "de");
+
+insert into TRANSLATION values (25, "masa", 1, "tr");
+insert into TRANSLATION values (26, "kapı", 2, "tr");
+insert into TRANSLATION values (27, "zemin", 3, "tr");
+insert into TRANSLATION values (28, "sandalye", 4, "tr");
+insert into TRANSLATION values (29, "pencere", 5, "tr");
+insert into TRANSLATION values (30, "duvar", 6, "tr");
+insert into TRANSLATION values (31, "yatak", 7, "tr");
+insert into TRANSLATION values (32, "kutu", 8, "tr");
