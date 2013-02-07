@@ -9,4 +9,4 @@ insert into LANGUAGE values ("en", "English");
 insert into LANGUAGE values ("de", "German");
 insert into LANGUAGE values ("es", "Spanish");
 insert into LANGUAGE values ("tr", "Turkish");
-insert into LANGUAGE values ("pt", "Brazilian Portuguese");
+insert into LANGUAGE values ("pt-BR", "Brazilian Portuguese");
