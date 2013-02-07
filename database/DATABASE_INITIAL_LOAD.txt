@@ -19,6 +19,7 @@ insert into WORD values (5, "window");
 insert into WORD values (6, "wall");
 insert into WORD values (7, "bed");
 insert into WORD values (8, "box");
+insert into WORD values (9, "light");
 
 insert into TRANSLATION values (1, "mesa", 1, "pt-BR");
 insert into TRANSLATION values (2, "porta", 2, "pt-BR");
@@ -55,3 +56,4 @@ insert into TRANSLATION values (29, "pencere", 5, "tr");
 insert into TRANSLATION values (30, "duvar", 6, "tr");
 insert into TRANSLATION values (31, "yatak", 7, "tr");
 insert into TRANSLATION values (32, "kutu", 8, "tr");
+
