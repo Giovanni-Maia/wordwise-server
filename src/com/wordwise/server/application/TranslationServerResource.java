@@ -55,8 +55,6 @@ public class TranslationServerResource extends ServerResource implements
 					
 					session.save(translation);
 				}
-				
-				session.save(translation);
 			}
 			else
 			{
