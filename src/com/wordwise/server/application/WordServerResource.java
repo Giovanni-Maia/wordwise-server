@@ -22,7 +22,6 @@ public class WordServerResource extends ServerResource implements WordResource {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		ListDTOWord result = new ListDTOWord();
 		try {
-			System.out.println("Beginning transactions");
 			session.beginTransaction();
 
 			Criteria criteria = session.createCriteria(Word.class);
@@ -33,11 +32,9 @@ public class WordServerResource extends ServerResource implements WordResource {
 			}
 			result = DTOWordFactory.build(criteria.list());
 			session.getTransaction().commit();
-			System.out.println("Ending transactions with" + result);
 		} finally {
 			session.close();
 		}
-		System.out.println("Final with" + result);
 		return result;
 	}
 
