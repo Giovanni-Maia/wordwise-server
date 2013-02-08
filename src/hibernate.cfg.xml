@@ -11,6 +11,9 @@
         <property name="show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         <property name="current_session_context_class">thread</property>
+        
+ 		<property name="hibernate.c3p0.idle_test_period">14400</property> 
+ 		<property name="hibernate.c3p0.timeout">25200</property>
 
         <mapping class="com.wordwise.server.model.Difficulty" />
         <mapping class="com.wordwise.server.model.Language" />
