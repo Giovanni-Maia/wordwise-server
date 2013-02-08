@@ -164,7 +164,7 @@ public class TranslationResourceTestCase
 		
 		assertEquals(1, list.size());
 		
-		list = translationResource.list(new ListTranslationParameters(null, null, 5, list));
+		list = translationResource.list(new ListTranslationParameters(pt, null, 5, list));
 		
 		assertEquals(1, list.size());
 	}

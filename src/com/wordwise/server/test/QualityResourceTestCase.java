@@ -92,7 +92,7 @@ public class QualityResourceTestCase
 		DTOWord word = list.get(0).getWord();
 		
 		DTOQuality quality = new DTOQuality();
-		quality.setQuality(3);
+		quality.setQuality(1);
 		quality.setWord(word);
 
 		qualityResource.add(quality);
@@ -101,13 +101,13 @@ public class QualityResourceTestCase
 		assertEquals(1, list.size());
 		
 		quality = new DTOQuality();
-		quality.setQuality(0);
+		quality.setQuality(-1);
 		quality.setWord(word);
 
 		qualityResource.add(quality);
 		
 		quality = new DTOQuality();
-		quality.setQuality(0);
+		quality.setQuality(-1);
 		quality.setWord(word);
 
 		qualityResource.add(quality);

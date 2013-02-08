@@ -23,26 +23,63 @@ import com.wordwise.server.resource.TranslationResource;
 
 public class TranslationServerResource extends ServerResource implements
 		TranslationResource {
+	@SuppressWarnings("unchecked")
 	@Override
 	@Put
 	public void add(DTOTranslation dtoTranslation) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
-			Criteria crit = session.createCriteria(Word.class);
-			crit.add(Restrictions.ilike("word", dtoTranslation.word.word));
-			@SuppressWarnings("unchecked")
-			List<Word> results = crit.list();
-			Translation translation = DTOTranslationFactory.build(dtoTranslation);
-			if (results.size() > 0) {
-				translation.setWord(results.get(0));
-			} else {
-				session.save(translation.getWord());
+			
+			Criteria translationCrit = session.createCriteria(Translation.class);
+			translationCrit.add(Restrictions.ilike("translation", dtoTranslation.translation));
+			List<Translation> translationResultList = translationCrit.list();
+			if (translationResultList.size() > 0)
+			{
+				translationCrit.createCriteria("word").add(Restrictions.ilike("word", dtoTranslation.word.word));
+				translationResultList = translationCrit.list();
+				Translation translation = DTOTranslationFactory.build(dtoTranslation);
+				if (translationResultList.size() <= 0)
+				{
+					Criteria wordCrit = session.createCriteria(Word.class);
+					wordCrit.add(Restrictions.ilike("word", dtoTranslation.word.word));
+					List<Word> wordResultList = wordCrit.list();
+					if (wordResultList.size() > 0)
+					{
+						translation.setWord(wordResultList.get(0));
+					}
+					else
+					{
+						session.save(translation.getWord());
+					}
+					
+					session.save(translation);
+				}
+				
+				session.save(translation);
 			}
-			session.save(translation);
+			else
+			{
+				Criteria wordCrit = session.createCriteria(Word.class);
+				wordCrit.add(Restrictions.ilike("word", dtoTranslation.word.word));
+				List<Word> wordResultList = wordCrit.list();
+				Translation translation = DTOTranslationFactory.build(dtoTranslation);
+				if (wordResultList.size() > 0)
+				{
+					translation.setWord(wordResultList.get(0));
+				}
+				else
+				{
+					session.save(translation.getWord());
+				}
+				
+				session.save(translation);
+			}
 
 			session.getTransaction().commit();
-		} finally {
+		}
+		finally
+		{
 			session.close();
 		}
 	}
