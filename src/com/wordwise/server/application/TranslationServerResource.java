@@ -111,8 +111,7 @@ public class TranslationServerResource extends ServerResource implements
 						getIDs(parameters.getTranslationsAlreadyUsed()))));
 			}
 			if (criteriaWord != null) {
-				criteriaWord.createCriteria("qualities",
-						JoinType.LEFT_OUTER_JOIN);
+				criteriaWord.createCriteria("qualities", JoinType.LEFT_OUTER_JOIN);
 			} else {
 				criteria.createCriteria("word").createCriteria("qualities",
 						JoinType.LEFT_OUTER_JOIN);
@@ -173,7 +172,7 @@ public class TranslationServerResource extends ServerResource implements
 		List<Translation> returnList = new ArrayList<Translation>();
 		for (Translation translation : result) {
 			double qualityAVG = translation.getWord().getQualityAVG();
-			if (qualityAVG == 0 || qualityAVG > 0) {
+			if (qualityAVG >= 0) {
 				returnList.add(translation);
 			}
 		}
