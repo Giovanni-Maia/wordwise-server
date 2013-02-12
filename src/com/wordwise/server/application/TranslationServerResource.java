@@ -21,8 +21,17 @@ import com.wordwise.server.model.Word;
 import com.wordwise.server.model.factory.DTOTranslationFactory;
 import com.wordwise.server.resource.TranslationResource;
 
+/**
+ * This class exposes web services for doing operations on Translation table.
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class TranslationServerResource extends ServerResource implements
 		TranslationResource {
+	
+	/**
+	 * Adds a new translation to the database
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	@Put
@@ -82,6 +91,9 @@ public class TranslationServerResource extends ServerResource implements
 		}
 	}
 
+	/**
+	 * Gets a random list of translations which conforms to the parameter list
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	@Post
@@ -94,11 +106,12 @@ public class TranslationServerResource extends ServerResource implements
 
 			Criteria criteria = session.createCriteria(Translation.class);
 			Criteria criteriaWord = null;
-
+			// eliminate the translations which are for different languages 
 			if (parameters != null && parameters.getLanguage() != null) {
 				criteria.createCriteria("language").add(
 						Restrictions.eq("code", parameters.getLanguage().code));
 			}
+			//check for difficulty constraint 
 			if (parameters != null && parameters.getDifficulty() != null) {
 				criteriaWord = criteria.createCriteria("word");
 				criteriaWord.createCriteria("difficulties",
@@ -116,7 +129,7 @@ public class TranslationServerResource extends ServerResource implements
 				criteria.createCriteria("word").createCriteria("qualities",
 						JoinType.LEFT_OUTER_JOIN);
 			}
-			criteria.createCriteria("rates", JoinType.LEFT_OUTER_JOIN);// .addOrder(Order.desc("rate"));
+			criteria.createCriteria("rates", JoinType.LEFT_OUTER_JOIN);
 			result = processDuplicatedObjects(criteria.list());
 			result = processRate(result);
 			result = processQuality(result);
@@ -129,9 +142,11 @@ public class TranslationServerResource extends ServerResource implements
 				result = processNumberOfTranslations(result,
 						parameters.getNumberOfTranslations());
 			}
+			//build DTOTranslation list
 			returnList = DTOTranslationFactory.build(result);
 			session.getTransaction().commit();
 		} finally {
+			//close the session
 			session.close();
 		}
 		return returnList;

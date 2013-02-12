@@ -10,33 +10,38 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * This class model class is used by Hibernate framework to persist and query
+ * data to/from Difficulty table
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 @Entity
-@Table(name="DIFFICULTY")
-public class Difficulty implements Serializable
-{
+@Table(name = "DIFFICULTY")
+public class Difficulty implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final Difficulty EASY = new Difficulty(1);
 	public static final Difficulty MEDIUM = new Difficulty(2);
 	public static final Difficulty HARD = new Difficulty(3);
-	
-	private Difficulty (int difficulty)
-	{
-		this.difficulty = difficulty;  
+
+	private Difficulty(int difficulty) {
+		this.difficulty = difficulty;
 	}
-	
-	public Difficulty()	{}
-	
+
+	public Difficulty() {
+	}
+
 	@Id
 	@GeneratedValue
-	@Column(name="ID")
+	@Column(name = "ID")
 	private Integer id;
-	
-	@ManyToOne(targetEntity=Word.class)
-	@JoinColumn(name="WORD_ID")
+
+	@ManyToOne(targetEntity = Word.class)
+	@JoinColumn(name = "WORD_ID")
 	private Word word;
-	
-	@Column(name="DIFFICULTY")
+
+	@Column(name = "DIFFICULTY")
 	private Integer difficulty;
 
 	public Integer getId() {
@@ -62,14 +67,15 @@ public class Difficulty implements Serializable
 	public void setDifficulty(Integer difficulty) {
 		this.difficulty = difficulty;
 	}
-	
-	public static Difficulty getByDifficulty(Integer difficulty)
-	{
-		switch(difficulty)
-		{
-			case 1: return EASY;
-			case 2: return MEDIUM;
-			case 3: return HARD;
+
+	public static Difficulty getByDifficulty(Integer difficulty) {
+		switch (difficulty) {
+		case 1:
+			return EASY;
+		case 2:
+			return MEDIUM;
+		case 3:
+			return HARD;
 		}
 		return null;
 	}

@@ -6,6 +6,13 @@ import java.util.Set;
 import com.wordwise.server.dto.DTORate;
 import com.wordwise.server.model.Rate;
 
+/**
+ * This class defines the methods to make conversion to/from DTORate and
+ * Rate. It is needed as a workaround for a problem because of Restlet
+ * framework
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class DTORateFactory
 {
 	public static DTORate build(Rate rate)

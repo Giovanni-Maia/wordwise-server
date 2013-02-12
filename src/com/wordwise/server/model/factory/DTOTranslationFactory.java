@@ -6,6 +6,13 @@ import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.server.dto.parameter.ListDTOTranslation;
 import com.wordwise.server.model.Translation;
 
+/**
+ * This class defines the methods to make conversion to/from DTOTranslation and
+ * Translation. It is needed as a workaround for a problem because of Restlet
+ * framework
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class DTOTranslationFactory
 {
 	public static DTOTranslation build(Translation translation)

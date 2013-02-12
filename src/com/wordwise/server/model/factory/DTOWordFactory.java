@@ -6,6 +6,13 @@ import com.wordwise.server.dto.DTOWord;
 import com.wordwise.server.dto.parameter.ListDTOWord;
 import com.wordwise.server.model.Word;
 
+/**
+ * This class defines the methods to make conversion to/from DTOWordy and
+ * Word. It is needed as a workaround for a problem because of Restlet
+ * framework
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class DTOWordFactory
 {
  	public static DTOWord build(Word word)

@@ -8,6 +8,11 @@ import com.wordwise.server.dto.DTORate;
 import com.wordwise.server.model.factory.DTORateFactory;
 import com.wordwise.server.resource.RateResource;
 
+/**
+ * This class exposes web services for doing operations on Rate table.
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class RateServerResource extends ServerResource implements RateResource
 {
 
@@ -19,6 +24,7 @@ public class RateServerResource extends ServerResource implements RateResource
 		try
 		{
 			session.beginTransaction();
+			// save rating to db
 			session.save(DTORateFactory.build(translationRating));
 			session.getTransaction().commit();
 		}

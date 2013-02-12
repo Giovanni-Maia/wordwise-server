@@ -12,7 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+/**
+ * This class model class is used by Hibernate framework to persist and query
+ * data to/from Translation table
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 @Entity
 @Table(name="TRANSLATION")
 public class Translation implements Serializable

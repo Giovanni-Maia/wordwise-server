@@ -10,6 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * This class model class is used by Hibernate framework to persist and query
+ * data to/from Rate table
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 @Entity
 @Table(name="RATE")
 public class Rate implements Serializable

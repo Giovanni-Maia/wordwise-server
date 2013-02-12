@@ -6,6 +6,13 @@ import java.util.List;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.server.model.Language;
 
+/**
+ * This class defines the methods to make conversion to/from DTOLanguage and
+ * Language. It is needed as a workaround for a problem because of Restlet
+ * framework
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class DTOLanguageFactory
 {
 	public static DTOLanguage build(Language language)

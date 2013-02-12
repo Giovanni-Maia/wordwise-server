@@ -6,6 +6,13 @@ import java.util.Set;
 import com.wordwise.server.dto.DTOQuality;
 import com.wordwise.server.model.Quality;
 
+/**
+ * This class defines the methods to make conversion to/from DTOQuality and
+ * Quality. It is needed as a workaround for a problem because of Restlet
+ * framework
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class DTOQualityFactory
 {
 	public static DTOQuality build(Quality quality)

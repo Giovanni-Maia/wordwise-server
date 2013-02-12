@@ -7,17 +7,23 @@ import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.server.dto.DTOTranslation;
 
-public class ListTranslationParameters implements Serializable
-{
+/**
+ * This class encapsulates all the parameters that might be needed when listing
+ * translations. It is sent from client to server when listing translations.
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
+public class ListTranslationParameters implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private DTOLanguage language;
 	private DTODifficulty difficulty;
 	private int numberOfTranslations;
 	private List<DTOTranslation> translationsAlreadyUsed;
-	
-	public ListTranslationParameters(DTOLanguage language, DTODifficulty difficulty, int numberOfTranslations, List<DTOTranslation> translationsAlreadyUsed)
-	{
+
+	public ListTranslationParameters(DTOLanguage language,
+			DTODifficulty difficulty, int numberOfTranslations,
+			List<DTOTranslation> translationsAlreadyUsed) {
 		super();
 		this.language = language;
 		this.difficulty = difficulty;
@@ -53,7 +59,8 @@ public class ListTranslationParameters implements Serializable
 		return translationsAlreadyUsed;
 	}
 
-	public void setTranslationsAlreadyUsed(List<DTOTranslation> translationsAlreadyUsed) {
+	public void setTranslationsAlreadyUsed(
+			List<DTOTranslation> translationsAlreadyUsed) {
 		this.translationsAlreadyUsed = translationsAlreadyUsed;
 	}
 }

@@ -2,7 +2,12 @@ package com.wordwise.server.dto;
 
 import java.io.Serializable;
 
-
+/**
+ * This class represents a part of the model that server and clients use
+ * commonly. It represents a rating evaluation for a specific translation
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class DTORate implements Serializable
 {
 	private static final long serialVersionUID = 1L;

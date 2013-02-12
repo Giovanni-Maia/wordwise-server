@@ -12,8 +12,16 @@ import com.wordwise.server.model.Word;
 import com.wordwise.server.model.factory.DTOWordFactory;
 import com.wordwise.server.resource.WordResource;
 
+/**
+ * This class exposes web services for doing operations on Word table.
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class WordServerResource extends ServerResource implements WordResource {
 
+	/**
+	 * Returns a random list of words that satisfies the given parameters
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	@Post
@@ -25,7 +33,7 @@ public class WordServerResource extends ServerResource implements WordResource {
 			session.beginTransaction();
 
 			Criteria criteria = session.createCriteria(Word.class);
-			//the criteria to return random rows
+			// the criteria to return random rows
 			criteria.add(Restrictions.sqlRestriction("1=1 order by rand()"));
 			if (parameters != null && parameters.getNumberOfWords() > 0) {
 				criteria.setMaxResults(parameters.getNumberOfWords());

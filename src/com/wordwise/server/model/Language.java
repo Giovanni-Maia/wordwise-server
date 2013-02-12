@@ -7,6 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * This class model class is used by Hibernate framework to persist and query
+ * data to/from Language table
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 @Entity
 @Table(name="LANGUAGE")
 public class Language implements Serializable
